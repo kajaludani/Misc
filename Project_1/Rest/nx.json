@@ -1,0 +1,27 @@
+{
+  "npmScope": "rest",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "restaurant-e2e": {
+      "tags": []
+    },
+    "restaurant": {
+      "tags": []
+    },
+    "library": {
+      "tags": []
+    },
+    "lib2": {
+      "tags": []
+    },
+    "library1": {
+      "tags": []
+    }
+  }
+}

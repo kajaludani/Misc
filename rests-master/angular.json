@@ -1,0 +1,193 @@
+{
+  "version": 1,
+  "projects": {
+    "resto": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/resto",
+      "sourceRoot": "apps/resto/src",
+      "prefix": "test13",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/resto",
+            "index": "apps/resto/src/index.html",
+            "main": "apps/resto/src/main.ts",
+            "polyfills": "apps/resto/src/polyfills.ts",
+            "tsConfig": "apps/resto/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/resto/src/favicon.ico",
+              "apps/resto/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/resto/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/resto/src/environments/environment.ts",
+                  "with": "apps/resto/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "resto:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "resto:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "resto:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/resto/tsconfig.app.json",
+              "apps/resto/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/resto/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/resto/jest.config.js",
+            "tsConfig": "apps/resto/tsconfig.spec.json",
+            "setupFile": "apps/resto/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "resto-e2e": {
+      "root": "apps/resto-e2e",
+      "sourceRoot": "apps/resto-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/resto-e2e/cypress.json",
+            "tsConfig": "apps/resto-e2e/tsconfig.e2e.json",
+            "devServerTarget": "resto:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "resto:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/resto-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/resto-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "typeahead": {
+      "projectType": "library",
+      "root": "libs/typeahead",
+      "sourceRoot": "libs/typeahead/src",
+      "prefix": "test13",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/typeahead/tsconfig.lib.json",
+            "project": "libs/typeahead/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/typeahead/tsconfig.lib.json",
+              "libs/typeahead/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/typeahead/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/typeahead/jest.config.js",
+            "tsConfig": "libs/typeahead/tsconfig.spec.json",
+            "setupFile": "libs/typeahead/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "resto"
+}

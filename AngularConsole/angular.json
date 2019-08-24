@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "projects": {
+    "Restaurant": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "Restaurant",
+      "sourceRoot": "Restaurant/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/Restaurant",
+            "index": "Restaurant/src/index.html",
+            "main": "Restaurant/src/main.ts",
+            "polyfills": "Restaurant/src/polyfills.ts",
+            "tsConfig": "Restaurant/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "Restaurant/src/favicon.ico",
+              "Restaurant/src/assets"
+            ],
+            "styles": [
+              "Restaurant/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "Restaurant/src/environments/environment.ts",
+                  "with": "Restaurant/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "Restaurant:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Restaurant:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Restaurant:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "Restaurant/src/test.ts",
+            "polyfills": "Restaurant/src/polyfills.ts",
+            "tsConfig": "Restaurant/tsconfig.spec.json",
+            "karmaConfig": "Restaurant/karma.conf.js",
+            "assets": [
+              "Restaurant/src/favicon.ico",
+              "Restaurant/src/assets"
+            ],
+            "styles": [
+              "Restaurant/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "Restaurant/tsconfig.app.json",
+              "Restaurant/tsconfig.spec.json",
+              "Restaurant/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "Restaurant/e2e/protractor.conf.js",
+            "devServerTarget": "Restaurant:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Restaurant:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  },
+  "defaultProject": "Restaurant"
+}

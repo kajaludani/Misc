@@ -1,0 +1,37 @@
+<!-- <div>
+    <h3>Man playing Pokemon Go aApp</h3>
+    <p [ngClass] = "{collapsed: selectedNewsId != 0}">
+        Kenya, Africa ...
+    </p>
+    <a href (click) = "expandNews(0)"
+    [hidden] = "selectedNewsId === 0">More . . .</a>
+</div>
+
+<div>
+    <h3>Amazon Buys Rhode Island</h3>
+    <p [ngClass] = "{collapsed: selectedNewsId != 1}">
+        Hello Amazon ...
+    </p>
+    <a href (click) = "expandNews(1)"
+    [hidden] = "selectedNewsId === 1">More . . .</a>
+</div>
+
+<div>
+    <h3>Tesla Coal-Powered SUV</h3>
+    <p [ngClass] = "{collapsed: selectedNewsId !=2 }">
+       Palo, CA -Tesla Motors...
+    </p>
+    <a href (click) = "expandNews(2)"
+    [hidden] = "selectedNewsId === 2">More . . .</a>
+</div> -->
+
+<div>
+    <div *ngFor="let news of newsItems; let newsId = index">
+        <h3>{{news.title}}</h3>
+        <p [ngClass] = "{collapsed: selectedNewsId != newsId}">
+            {{news.body}}
+        </p>
+        <a href (click) = "expandNews(newsId)"
+        *ngIf = "selectedNewsId != newsId">More .  .  .</a>
+     </div>
+</div>

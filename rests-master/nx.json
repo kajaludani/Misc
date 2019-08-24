@@ -1,0 +1,21 @@
+{
+  "npmScope": "test13",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "resto-e2e": {
+      "tags": []
+    },
+    "resto": {
+      "tags": []
+    },
+    "typeahead": {
+      "tags": []
+    }
+  }
+}
